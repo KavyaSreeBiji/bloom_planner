@@ -196,12 +196,14 @@ export default function HabitTracker() {
 
       {/* Habit Table */}
       <div style={styles.tableWrap} className="card">
-        <div style={styles.tableHeader}>
-          <div style={{ ...styles.habitCol, minWidth: isMobile ? 100 : 160, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.08em' }}>HABIT ✦</div>
-          {DAYS.map(d => (
-            <div key={d} style={{ ...styles.dayCol, minWidth: isMobile ? 24 : 36, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.05em' }}>{isMobile ? d.charAt(0) : d.toUpperCase()}</div>
-          ))}
-          <div style={{ ...styles.progressCol, minWidth: isMobile ? 45 : 60, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.05em' }}>{isMobile ? '%' : 'WEEKLY'}</div>
+        <div style={{ ...styles.tableHeader, flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'stretch' : 'center', padding: isMobile ? '12px 10px' : '10px 14px' }}>
+          <div style={{ ...styles.habitCol, flex: isMobile ? 'unset' : 2, width: isMobile ? '100%' : 'auto', minWidth: isMobile ? '100%' : 160, marginBottom: isMobile ? 12 : 0, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.08em' }}>HABIT ✦</div>
+          <div style={{ display: isMobile ? 'flex' : 'contents', justifyContent: isMobile ? 'space-between' : 'unset', width: isMobile ? '100%' : 'auto' }}>
+            {DAYS.map(d => (
+              <div key={d} style={{ ...styles.dayCol, minWidth: isMobile ? 24 : 36, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.05em' }}>{isMobile ? d.charAt(0) : d.toUpperCase()}</div>
+            ))}
+            <div style={{ ...styles.progressCol, minWidth: isMobile ? 45 : 60, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.05em' }}>{isMobile ? '%' : 'WEEKLY'}</div>
+          </div>
         </div>
 
         {local.habits.map((habit, idx) => {
@@ -210,8 +212,8 @@ export default function HabitTracker() {
           const isEditing = editingId === habit.id
 
           return (
-            <div key={habit.id} style={{ ...styles.tableRow, background: idx % 2 === 0 ? 'transparent' : 'rgba(245,237,230,0.4)', padding: isMobile ? '8px 6px' : '9px 14px' }}>
-              <div style={{ ...styles.habitCol, minWidth: isMobile ? 100 : 160 }}>
+            <div key={habit.id} style={{ ...styles.tableRow, background: idx % 2 === 0 ? 'transparent' : 'rgba(245,237,230,0.4)', padding: isMobile ? '14px 10px' : '9px 14px', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'stretch' : 'center' }}>
+              <div style={{ ...styles.habitCol, flex: isMobile ? 'unset' : 2, width: isMobile ? '100%' : 'auto', minWidth: isMobile ? '100%' : 160, marginBottom: isMobile ? 14 : 0 }}>
                 {isEditing ? (
                   <div style={{ display: 'flex', gap: 4, flex: 1, alignItems: 'center' }}>
                     <input
@@ -249,19 +251,22 @@ export default function HabitTracker() {
                   </>
                 )}
               </div>
-              {DAY_KEYS.map(day => (
-                <div key={day} style={{ ...styles.dayCol, minWidth: isMobile ? 24 : 36 }}>
-                  <div
-                    className={`check-box ${local.checks[habit.id]?.[day] ? 'checked' : ''}`}
-                    onClick={() => toggle(habit.id, day)}
-                  />
+              
+              <div style={{ display: isMobile ? 'flex' : 'contents', justifyContent: isMobile ? 'space-between' : 'unset', width: isMobile ? '100%' : 'auto' }}>
+                {DAY_KEYS.map(day => (
+                  <div key={day} style={{ ...styles.dayCol, minWidth: isMobile ? 24 : 36 }}>
+                    <div
+                      className={`check-box ${local.checks[habit.id]?.[day] ? 'checked' : ''}`}
+                      onClick={() => toggle(habit.id, day)}
+                    />
+                  </div>
+                ))}
+                <div style={{ ...styles.progressCol, minWidth: isMobile ? 45 : 60, fontSize:12, color:'var(--terracotta)', fontWeight:500 }}>
+                  <div style={styles.miniBarWrap}>
+                    <div style={{ ...styles.miniBar, width: `${habitPct}%` }} />
+                  </div>
+                  {habitPct}%
                 </div>
-              ))}
-              <div style={{ ...styles.progressCol, minWidth: isMobile ? 45 : 60, fontSize:12, color:'var(--terracotta)', fontWeight:500 }}>
-                <div style={styles.miniBarWrap}>
-                  <div style={{ ...styles.miniBar, width: `${habitPct}%` }} />
-                </div>
-                {habitPct}%
               </div>
             </div>
           )
