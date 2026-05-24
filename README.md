@@ -5,6 +5,10 @@
   <p align="center">
     <strong>Focus on progress, not perfection.</strong>
     <br />
+    <br />
+    🌟 <strong><a href="https://plannerbloom.netlify.app/">View Live Demo</a></strong> 🌟
+    <br />
+    <br />
     A beautifully designed, aesthetic productivity web application to help you stay organized and build better habits at your own pace.
     <br />
     <br />
