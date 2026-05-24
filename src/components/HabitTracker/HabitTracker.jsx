@@ -197,11 +197,11 @@ export default function HabitTracker() {
       {/* Habit Table */}
       <div style={styles.tableWrap} className="card">
         <div style={styles.tableHeader}>
-          <div style={{ ...styles.habitCol, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.08em' }}>HABIT ✦</div>
+          <div style={{ ...styles.habitCol, minWidth: isMobile ? 100 : 160, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.08em' }}>HABIT ✦</div>
           {DAYS.map(d => (
-            <div key={d} style={{ ...styles.dayCol, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.05em' }}>{d.toUpperCase()}</div>
+            <div key={d} style={{ ...styles.dayCol, minWidth: isMobile ? 24 : 36, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.05em' }}>{isMobile ? d.charAt(0) : d.toUpperCase()}</div>
           ))}
-          <div style={{ ...styles.progressCol, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.05em' }}>WEEKLY</div>
+          <div style={{ ...styles.progressCol, minWidth: isMobile ? 45 : 60, fontWeight:600, color:'var(--brown-mid)', fontSize:11, letterSpacing:'0.05em' }}>{isMobile ? '%' : 'WEEKLY'}</div>
         </div>
 
         {local.habits.map((habit, idx) => {
@@ -210,8 +210,8 @@ export default function HabitTracker() {
           const isEditing = editingId === habit.id
 
           return (
-            <div key={habit.id} style={{ ...styles.tableRow, background: idx % 2 === 0 ? 'transparent' : 'rgba(245,237,230,0.4)' }}>
-              <div style={styles.habitCol}>
+            <div key={habit.id} style={{ ...styles.tableRow, background: idx % 2 === 0 ? 'transparent' : 'rgba(245,237,230,0.4)', padding: isMobile ? '8px 6px' : '9px 14px' }}>
+              <div style={{ ...styles.habitCol, minWidth: isMobile ? 100 : 160 }}>
                 {isEditing ? (
                   <div style={{ display: 'flex', gap: 4, flex: 1, alignItems: 'center' }}>
                     <input
@@ -250,14 +250,14 @@ export default function HabitTracker() {
                 )}
               </div>
               {DAY_KEYS.map(day => (
-                <div key={day} style={styles.dayCol}>
+                <div key={day} style={{ ...styles.dayCol, minWidth: isMobile ? 24 : 36 }}>
                   <div
                     className={`check-box ${local.checks[habit.id]?.[day] ? 'checked' : ''}`}
                     onClick={() => toggle(habit.id, day)}
                   />
                 </div>
               ))}
-              <div style={{ ...styles.progressCol, fontSize:12, color:'var(--terracotta)', fontWeight:500 }}>
+              <div style={{ ...styles.progressCol, minWidth: isMobile ? 45 : 60, fontSize:12, color:'var(--terracotta)', fontWeight:500 }}>
                 <div style={styles.miniBarWrap}>
                   <div style={{ ...styles.miniBar, width: `${habitPct}%` }} />
                 </div>
@@ -380,7 +380,7 @@ const styles = {
   statIcon: { fontSize:18, marginBottom:4 },
   statValue: { fontSize:15, fontWeight:700, color:'var(--brown-dark)', marginBottom:2 },
   statLabel: { fontSize:9, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--brown-soft)', textAlign:'center' },
-  tableWrap: { overflow:'auto', marginBottom:14 },
+  tableWrap: { overflowX:'hidden', marginBottom:14 },
   tableHeader: { display:'flex', padding:'10px 14px', borderBottom:'1.5px solid var(--border-soft)' },
   tableRow: { display:'flex', alignItems:'center', padding:'9px 14px', borderBottom:'1px solid var(--border-soft)' },
   habitCol: { flex:2, display:'flex', alignItems:'center', gap:6, minWidth:160 },
