@@ -22,7 +22,7 @@ export default function Navbar({ active, setActive }) {
           <span style={styles.brandName}>Bloom Planner</span>
         </div>
         <div style={styles.userArea}>
-          <span style={styles.greeting}>Hi, {firstName} <Sparkles size={13} style={{ display: 'inline-block', verticalAlign: 'text-bottom', color: 'var(--terracotta)', marginLeft: 2 }} /></span>
+          <span style={styles.greeting}>Hi, {firstName} ✿</span>
           <button
             className="btn-ghost"
             onClick={() => signOut(auth)}
