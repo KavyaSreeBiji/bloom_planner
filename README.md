@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="public/vite.svg" alt="Logo" width="80" height="80">
-  <h1 align="center">hoBloom Planner</h1>
+  
+  <h1 align="center">Bloom Planner</h1>
 
   <p align="center">
     <strong>Focus on progress, not perfection.</strong>
@@ -17,15 +17,6 @@
     <a href="#-design-philosophy">Design Philosophy</a>
   </p>
 </div>
-
----
-
-## 📸 Screenshots
-
-*(Add screenshots of your application here to show off the aesthetic design!)*
-- **Dashboard / Weekly Planner**
-- **Habit Tracker with AI Icons**
-- **To-Do List & History**
 
 ---
 
