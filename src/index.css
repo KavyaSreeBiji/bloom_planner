@@ -1,0 +1,155 @@
+/* src/index.css */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ── Palette ── */
+  --cream:        #FAF7F2;
+  --cream-deep:   #F5EDE3;
+  --blush:        #F5C6C2;
+  --blush-light:  #FBE8E6;
+  --blush-mid:    #EDB4AF;
+  --salmon:       #E8B49A;
+  --salmon-deep:  #D4957A;
+  --terracotta:   #C47860;
+  --brown-dark:   #4A2C20;
+  --brown-mid:    #8B5E4A;
+  --brown-soft:   #C4A090;
+  --green-soft:   #A8C4A0;
+  --green-deep:   #7A9E78;
+  --card-bg:      #FDFAF7;
+  --border:       #EAD9D0;
+  --border-soft:  #F0E6DF;
+  --white:        #FFFFFF;
+  --shadow:       rgba(139, 94, 74, 0.10);
+  --shadow-md:    rgba(139, 94, 74, 0.16);
+
+  /* ── Typography ── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-script:  'Dancing Script', cursive;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+
+  /* ── Spacing & Shape ── */
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  22px;
+  --radius-pill: 999px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--brown-dark);
+  min-height: 100dvh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-deep); }
+::-webkit-scrollbar-thumb { background: var(--brown-soft); border-radius: 99px; }
+
+/* Reusables */
+.card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 16px var(--shadow);
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 22px;
+  background: var(--terracotta);
+  color: var(--white);
+  border: none; border-radius: var(--radius-pill);
+  font-family: var(--font-body); font-size: 14px; font-weight: 500;
+  cursor: pointer; transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+.btn-primary:hover { background: var(--salmon-deep); transform: translateY(-1px); box-shadow: 0 4px 12px var(--shadow-md); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--brown-mid);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body); font-size: 13px; font-weight: 400;
+  cursor: pointer; transition: all 0.2s ease;
+}
+.btn-ghost:hover { background: var(--blush-light); border-color: var(--blush-mid); color: var(--brown-dark); }
+
+.input-field {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body); font-size: 14px; color: var(--brown-dark);
+  outline: none; transition: border-color 0.2s;
+}
+.input-field::placeholder { color: var(--brown-soft); }
+.input-field:focus { border-color: var(--blush-mid); background: var(--white); }
+
+/* Checkbox custom */
+.check-box {
+  width: 18px; height: 18px; min-width: 18px;
+  border: 2px solid var(--blush-mid);
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s ease;
+  background: var(--white);
+}
+.check-box.checked {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+}
+.check-box.checked::after {
+  content: '✓'; color: white; font-size: 11px; font-weight: 700;
+}
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.35s ease forwards; }
+
+/* Decorative flower/dot patterns */
+.deco-dot {
+  width: 6px; height: 6px;
+  background: var(--blush);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Mobile responsive ── */
+@media (max-width: 640px) {
+  /* Weekly Planner: 2-col day grid */
+  .days-grid-mobile { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Habit table: scrollable */
+  .habit-table-wrap { overflow-x: auto; }
+
+  /* Shrink hero titles */
+  h1 { font-size: clamp(22px, 6vw, 44px) !important; }
+}
+
+@media (max-width: 480px) {
+  .stats-row-wrap { flex-wrap: wrap; }
+  .bottom-grid-wrap { grid-template-columns: 1fr !important; }
+  .top-row-grid { grid-template-columns: 1fr !important; }
+  .bottom-row-flex { flex-direction: column !important; }
+}
+
+
