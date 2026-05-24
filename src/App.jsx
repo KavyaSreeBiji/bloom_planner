@@ -41,7 +41,7 @@ function AppShell() {
   return (
     <div style={{ minHeight:'100dvh', display:'flex', flexDirection:'column' }}>
       <Navbar active={activeTab} setActive={setActiveTab} />
-      <main style={{ flex:1, overflowY:'auto' }}>
+      <main style={{ flex:1, overflowY:'auto', overflowX:'hidden' }}>
         {activeTab === 'weekly'  && <WeeklyPlanner />}
         {activeTab === 'habits'  && <HabitTracker />}
         {activeTab === 'todo'    && <TodoList />}

@@ -225,7 +225,7 @@ const styles = {
   sub: { fontSize: 12, color:'var(--brown-soft)', fontStyle:'italic', marginTop:4 },
   dateNav: { display:'flex', alignItems:'center', justifyContent:'center', gap:8, marginBottom:16 },
   dateBlock: { display:'flex', alignItems:'center', gap:8 },
-  dateLabel: { fontSize:14, fontWeight:500, color:'var(--brown-dark)', minWidth:180, textAlign:'center' },
+  dateLabel: { fontSize:14, fontWeight:500, color:'var(--brown-dark)', flex: 1, minWidth: 100, textAlign:'center' },
   todayBadge: {
     background:'var(--blush)', color:'var(--brown-dark)',
     fontSize:10, fontWeight:600, padding:'2px 8px',
@@ -249,7 +249,7 @@ const styles = {
     display:'flex', alignItems:'center', justifyContent:'center',
     cursor:'pointer', flexShrink:0, transition:'all 0.15s',
   },
-  pillText: { flex:1, fontSize:14, color:'var(--brown-dark)', fontWeight:400 },
+  pillText: { flex:1, fontSize:14, color:'var(--brown-dark)', fontWeight:400, wordBreak: 'break-word', overflowWrap: 'anywhere' },
   pillActions: { display:'flex', gap:4, opacity:0.7 },
   iconBtn: { background:'none', border:'none', cursor:'pointer', color:'rgba(74,44,32,0.7)', padding:4, borderRadius:4, display:'flex', alignItems:'center' },
   editInput: { flex:1, border:'none', background:'rgba(255,255,255,0.4)', borderRadius:6, padding:'2px 8px', fontSize:14, fontFamily:'var(--font-body)', outline:'none', color:'var(--brown-dark)' },
